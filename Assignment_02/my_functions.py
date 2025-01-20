@@ -79,4 +79,53 @@ total_revenue(10,15.50)
 total_revenue(8,5.25)
 # 42.0
 
-def total_cost(num_units, fixed_costs, )
+def total_cost(num_units, fixed_costs: float, cost_coeff: float) -> float:
+    """ Calculates total cost incurred to produce a product using the 
+    formula TC = a * quantity^2 + FC
+
+    num_units - Number of units produced
+    fixed_costs - total amount of fixed costs
+    cost_coeff - constant that is multiplied by square of units produced
+
+    >>> total_cost(400,4000.0,1.0)
+    164,000.0
+    >>> total_cost(50,1300.0,2.9)
+    8550.0
+    """
+    total = cost_coeff * num_units**2 + fixed_costs
+    
+    return total
+
+# Testing the function
+total_cost(400,4000.0,1.0)
+# 164,000.0
+total_cost(50,1300.0,2.9)
+# 8550.0
+total_cost(130,12000.0,0.88)
+# 26872.0
+
+def CESutility(consumed_good1, consumed_good2, degree_complements: float) -> float:
+    """ Calculates value of Constant Elasticity of Substitution utility function
+    which measures degree of satisfaction a consumer gets from two goods with formula
+   (x^r+y^r)^1/r
+
+    consumed_good1 - Quantity of good 1 consumed
+    consumed_good2 - Quantity of good 2 consumed
+    degree_complements - Degree to which the goods are complements or substitutes
+
+    >>> CESutility(40,55,0.7)
+    127.38
+    >>> CESutility(170,168,-0.35)
+    23.323
+    """
+    total = round((consumed_good1 ** degree_complements + consumed_good2 ** degree_complements)**(1/degree_complements),3)
+    
+    return total
+
+# Testing the function
+CESutility(40,55,0.7)
+# 127.38
+CESutility(170,168,-0.35)
+# 23.323
+CESutility(1030,1600,0.9)
+# 2833.825
