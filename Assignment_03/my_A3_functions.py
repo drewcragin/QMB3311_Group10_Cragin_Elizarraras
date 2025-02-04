@@ -49,8 +49,9 @@ def CESutility_valid(consumed_good1, consumed_good2, degree_complements: float) 
     CESutility_valid(5, 8, 3)
     # 8.604
     CESutility_valid(-5, 8, 3)
-    # None
+    # Error message for x
     CESutility_valid(5, -8, 3)
-    # None
+    # Error message for y
     CESutility_valid(5, 8, -3)
-    # None
+    # Error message for r
+    
