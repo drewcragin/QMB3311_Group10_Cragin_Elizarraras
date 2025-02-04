@@ -126,3 +126,20 @@ def logit(x,beta0,beta1):
     # 0.9
     logit(1,0,math.log(3))
     # 0.75
+    
+    def logit_like(y_i, x_i, beta0, beta1):
+        """ Calculates the log-likelihood of observation (y_i;x_i)
+        by returning the log of the function (x;b_0,b_1) if y_i = 1
+        and the log of the function 1-(x;b_0,b_1) if y_i = 0
+        
+        y_i - Binary variable for if event occured
+        x_i - Independent variable
+        beta0 - Beta 0, the intercept
+        beta1 - Beta 1, the slope
+        
+        """
+        probability = logit(x_i, beta0, beta1)
+        if y_i == 1:
+            return math.log(probability)
+        if y_i == 0:
+            return math.log(1-probability)
