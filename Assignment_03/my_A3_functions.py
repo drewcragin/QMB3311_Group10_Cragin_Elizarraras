@@ -98,4 +98,26 @@ def CESutility_valid(consumed_good1, consumed_good2, degree_complements: float) 
         # Error message for r
         CESutility_in_budget(5, 3, 2, -2, 2, 20)
         # Error message for p_x
-        
+
+import math
+def logit(x,beta0,beta1):
+    """calculates the logit link function, which gives the probability of a binary result [prob(y=1|x)] in a form that can be 
+    modelled linearly. e^b0+xb1 / 1+e^ b0+xb1
+
+    x- independent input value
+    beta0- parameter 1, commonly intercept
+    beta1- parameter 2, commonly slope
+
+    >>>logit(70,2,3)
+    
+    >>>
+
+    >>>
+
+    """
+    
+    
+    
+    
+    answer= math.exp((beta0 + x * beta1)) / (1 + math.exp(beta0 + x * beta1))
+    return answer
