@@ -22,10 +22,14 @@ def CESutility_valid(consumed_good1, consumed_good2, degree_complements: float) 
    consumed_good2 - Quantity of good 2 consumed
    degree_complements - Degree to which the goods are complements or substitutes
 
-   >>> CESutility(40,55,0.7)
-   127.38
-   >>> CESutility(170,168,-0.35)
-   23.323
+   >>> CESutility_valid(5, 8, 3)
+   8.604
+   >>> CESutility_valid(-5, 8, 3)
+   None
+   >>> CESutility_valid(5, -8, 3)
+   None
+   >>> CESutility_valid(5, 8, -3)
+   None
    """
     if consumed_good1 < 0:
         print("X Can not be a negative number")
@@ -40,3 +44,13 @@ def CESutility_valid(consumed_good1, consumed_good2, degree_complements: float) 
     total = round((consumed_good1 ** degree_complements + consumed_good2 ** degree_complements)**(1/degree_complements),3)
    
     return total
+
+    # Testing the function
+    CESutility_valid(5, 8, 3)
+    # 8.604
+    CESutility_valid(-5, 8, 3)
+    # None
+    CESutility_valid(5, -8, 3)
+    # None
+    CESutility_valid(5, 8, -3)
+    # None
