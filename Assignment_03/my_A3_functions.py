@@ -139,7 +139,13 @@ def logit(x,beta0,beta1):
         
         """
         probability = logit(x_i, beta0, beta1)
+        
         if y_i == 1:
             return math.log(probability)
         if y_i == 0:
             return math.log(1-probability)
+        else:
+            print("y_i must be 1 or 0")
+            return None
+        # Testing the function
+        
