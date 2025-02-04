@@ -115,12 +115,14 @@ def logit(x,beta0,beta1):
     >>> logit(1,0,math.log(3))
     0.75
     """
-    answer= math.exp((beta0 + x * beta1)) / (1 + math.exp(beta0 + x * beta1))
-    return answer
-# Testing the function
-logit(1,0,math.log(1))
-# 0.5
-logit(1,0,math.log(9))
-# 0.9
-logit(1,0,math.log(3))
-# 0.75
+    total = (math.e**(beta0 + x * beta1)) / (1 + math.e**(beta0 + x * beta1))
+    
+    return total
+
+    # Testing the function    
+    logit(1,0,math.log(1))
+    # 0.5
+    logit(1,0,math.log(9))
+    # 0.9
+    logit(1,0,math.log(3))
+    # 0.75
