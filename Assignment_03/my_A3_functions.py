@@ -109,11 +109,11 @@ def logit(x,beta0,beta1):
     beta1- parameter 2, commonly slope
 
     >>>logit(70,2,3)
-    
-    >>>
-
-    >>>
-
+    1
+    >>>logit(1,0.5,1)
+    0.8175744761936437
+    >>>logit(-1,2,2)
+    0.5
     """
     
     
