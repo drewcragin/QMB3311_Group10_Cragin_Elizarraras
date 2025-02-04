@@ -55,3 +55,47 @@ def CESutility_valid(consumed_good1, consumed_good2, degree_complements: float) 
     CESutility_valid(5, 8, -3)
     # Error message for r
     
+    def CESutility_in_budget(consumed_good1, consumed_good2, degree_complements: float, p_x, p_y, w) -> float:
+        """ Evaluates the CESutility_valid function when the consumer's choice of goods
+        x and y are in budget, and returns None otherwise using the wealth formula
+        w >= p_x*x + p_y*y
+    
+        consumed_good1 - Quantity of good one
+        consumed_good2 - Quantity of good two
+        r - Degree to which the goods are complements or substitutes
+        p_x - Price of good one
+        p_y - Price of good two
+        w - Wealth
+        
+        >>> CESutility_in_budget(5, 3, 2, 2, 2, 20)
+        5.831
+        >>> CESutility_in_budget(5, 3, 2, 2, 2, 4)
+        None
+        >>> CESutility_in_budget(5, 3, -2, 2, 2, 20)
+        None
+        >>> CESutility_in_budget(5, 3, 2, -2, 2, 20)
+        None
+        """
+        if p_x < 0:
+            print("Price of X can not be negative")
+            return None
+        if p_y < 0:
+            print("Price of Y can not be negative")
+            return None
+        
+        if w < p_x*consumed_good1 + p_y*consumed_good2:
+            print("Consumers basket of goods can not exceed wealth")
+            return None
+        
+        return CESutility_valid(consumed_good1, consumed_good2, degree_complements)
+        
+        # Testing the function
+        CESutility_in_budget(5, 3, 2, 2, 2, 20)
+        # 5.831
+        CESutility_in_budget(5, 3, 2, 2, 2, 4)
+        # Error message for wealth
+        CESutility_in_budget(5, 3, -2, 2, 2, 20)
+        # Error message for r
+        CESutility_in_budget(5, 3, 2, -2, 2, 20)
+        # Error message for p_x
+        
