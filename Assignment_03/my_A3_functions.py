@@ -115,9 +115,5 @@ def logit(x,beta0,beta1):
     >>>logit(-1,2,2)
     0.5
     """
-    
-    
-    
-    
     answer= math.exp((beta0 + x * beta1)) / (1 + math.exp(beta0 + x * beta1))
     return answer
