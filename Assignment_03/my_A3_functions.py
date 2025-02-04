@@ -137,6 +137,13 @@ def logit(x,beta0,beta1):
         beta0 - Beta 0, the intercept
         beta1 - Beta 1, the slope
         
+        >>> logit_like(1, 1, 0, math.log(3))
+        
+        >>> logit_like(0, 1, 0, math.log(3))
+        
+        >>> logit_like(5, 1, 0, math.log(3))
+        Error message for y_i
+
         """
         probability = logit(x_i, beta0, beta1)
         
@@ -147,5 +154,12 @@ def logit(x,beta0,beta1):
         else:
             print("y_i must be 1 or 0")
             return None
-        # Testing the function
         
+        # Testing the function
+        logit_like(1, 1, 0, math.log(3))
+        
+        logit_like(0, 1, 0, math.log(3))
+        
+        logit_like(5, 1, 0, math.log(3))
+        # Error message for y_i
+      
