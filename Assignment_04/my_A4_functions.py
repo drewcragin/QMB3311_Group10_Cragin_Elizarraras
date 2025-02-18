@@ -188,5 +188,19 @@ def CESutility_multi(x, a, r):
    a - Vector of weighting parameters for each good
    r - Elasticity parameter
    
+   >>>
    """
+   if not all(xi >= 0 for xi in x) or not all(ai >= 0 for ai in a):
+       return None
+    
+   if len(x) != len(a):
+       return None
    
+   if len(x) != len(a):
+       utility = sum(a[i]**(1-r) * x[i]**r for i in range(len(x))) ** (1/r)
+       return utility
+   
+   else:
+       return None
+        
+
