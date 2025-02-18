@@ -190,13 +190,13 @@ def CESutility_multi(x: list, a: list, r: float) -> float:
    
    >>>
    """
-   if not all(xi >= 0 for xi in x) or not all(ai >= 0 for ai in a):
+   if any(val < 0 for val in x) or any(val < 0 for val in a):
        return None
     
    if len(x) != len(a):
        return None
    
-   if len(x) != len(a):
+   if len(x) == len(a):
        utility = sum(a[i]**(1-r) * x[i]**r for i in range(len(x))) ** (1/r)
        return utility
    
