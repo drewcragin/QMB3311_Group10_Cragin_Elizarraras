@@ -181,7 +181,7 @@ logit_like_grad([1, 0, 1], [3, 3, 3], 0.0, math.log(2))
 
 import numpy as np
 
-def CESutility_multi(x, a, r):
+def CESutility_multi(x: list, a: list, r: float) -> float:
    """Calculates the consumer utility for more than two goods
    
    x - Vector of quantities
@@ -202,5 +202,7 @@ def CESutility_multi(x, a, r):
    
    else:
        return None
-        
+
+# Testing the function
+CESutility_multi([3, 4, 5], [1, 5, 2], 1.5)
 
