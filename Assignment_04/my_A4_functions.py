@@ -188,12 +188,19 @@ def CESutility_multi(x: list, a: list, r: float) -> float:
    a - Vector of weighting parameters for each good
    r - Elasticity parameter
    
-   >>>
+   >>> CESutility_multi([3, 4, 5], [1, 5, 2], 1.5)
+   6.528142797805768
+   >>> CESutility_multi([3, -4, 5], [1, 5, 2], 1.5)
+   Error: Values must be positive
+   >>> CESutility_multi([3, 4, 5, 6], [1, 5, 2], 1.5)
+   Error: Lengths must be equal
    """
    if any(val < 0 for val in x) or any(val < 0 for val in a):
+       print("Error: Values must be positive")
        return None
     
    if len(x) != len(a):
+       print("Error: Lengths must be equal")
        return None
    
    if len(x) == len(a):
@@ -205,4 +212,10 @@ def CESutility_multi(x: list, a: list, r: float) -> float:
 
 # Testing the function
 CESutility_multi([3, 4, 5], [1, 5, 2], 1.5)
+# 6.528142797805768
+CESutility_multi([3, -4, 5], [1, 5, 2], 1.5)
+# Error: Values must be positive
+CESutility_multi([3, 4, 5, 6], [1, 5, 2], 1.5)
+# Error: Lengths must be equal
 
+   
