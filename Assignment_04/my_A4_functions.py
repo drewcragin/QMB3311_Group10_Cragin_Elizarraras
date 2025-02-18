@@ -50,7 +50,7 @@ def matrix_inverse(mat_in):
      [ 3.]]
     """
     if mat_in.shape != (2,2):
-        print("Warning: Input must be a 2x2 matrix.")
+        print("Warning: Shape must be 2x2.")
         return None
     
     a11 = mat_in[0, 0]
@@ -58,14 +58,18 @@ def matrix_inverse(mat_in):
     a21 = mat_in[1, 0]
     a22 = mat_in[1, 1]
     
-    det = a11 * a22 - a12 * a21
+    dterm=(a11 * a22) - (a12 * a21)
     
-    if det == 0:
+    if dterm == 0:
         print("Warning: Matrix is singular")
         return None
+
+    mat_out=np.zeros((2,2))
+    mat_flip=np.array([[a22,-a12],[-a21,a11]])
     
-    inv_det = 1 / det
-    mat_out = np.array([[a22, -a12], [-a21, a11]]) * inv_det
+    for row in range(2):
+        for column in range(2):
+            mat_out[row,column]=(1/dterm)*mat_flip[row,column]
     
     return mat_out
     
