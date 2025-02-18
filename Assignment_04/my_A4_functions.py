@@ -44,7 +44,7 @@ def matrix_inverse(mat_in):
      [ 3.]]
     """
     if mat_in.shape != (2,2):
-        print("Warning: Input must be a 2x2 matrix.")
+        print("Warning: Shape must be 2x2.")
         return None
     
     a11 = mat_in[0, 0]
@@ -52,17 +52,22 @@ def matrix_inverse(mat_in):
     a21 = mat_in[1, 0]
     a22 = mat_in[1, 1]
     
-    det = a11 * a22 - a12 * a21
+    dterm=(a11 * a22) - (a12 * a21)
     
-    if det == 0:
+    if dterm == 0:
         print("Warning: Matrix is singular")
         return None
+
+    mat_out=np.zeros((2,2))
+    mat_flip=np.array([[a22,-a12],[-a21,a11]])
     
-    inv_det = 1 / det
-    mat_out = np.array([[a22, -a12], [-a21, a11]]) * inv_det
+    for row in range(2):
+        for column in range(2):
+            mat_out[row,column]=(1/dterm)*mat_flip[row,column]
     
     return mat_out
     
+
 # Inverse matrix test
 matrix_inverse(np.array([[4, 9], [1, 4]]))
 # mat_in.dot(mat_out) test
@@ -173,3 +178,15 @@ logit_like_grad([1, 0, 1], [1, 1, 1], 0.0, math.log(5))
 # [-0.5, -0.5]
 logit_like_grad([1, 0, 1], [3, 3, 3], 0.0, math.log(2))
 # [-2/3, -2.0]
+
+import numpy as np
+
+def CESutility_multi(x, a, r):
+   """Calculates the consumer utility for more than two goods
+   
+   x - Vector of quantities
+   a - Vector of weighting parameters for each good
+   r - Elasticity parameter
+   
+   """
+   
