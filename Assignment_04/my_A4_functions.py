@@ -15,7 +15,7 @@
 """
 import numpy as np
 
-def matrix_inverse(mat_in):
+def matrix_inverse(mat_in): # expected input/output? (-2)
     """ Calculates the inverse of the two-by-two matrix mat_in
     using the formula for the inverse of a two-by-two matrix
      ( 1 / a11*a22 - a12*a21 ) * the matrix
@@ -24,25 +24,10 @@ def matrix_inverse(mat_in):
     [[ 0.57142857 -1.28571429]
      [-0.14285714  0.57142857]]
         
-    >>> print(np.dot(np.array([[4, 9], [1, 4]]), matrix_inverse(np.array([[4, 9], [1, 4]]))))
-    [[1. 0.]
-     [0. 1.]]
-    
-    >>> print(np.dot(matrix_inverse(np.array([[4, 9], [1, 4]])), np.array([[4, 9], [1, 4]])))
-    [[1. 0.]
-     [0. 1.]]
-    
-    >>> mat_in = np.array([[4, 9], [1, 4]])
-    mat_out = matrix_inverse(mat_in)
-    b = np.array([[3], [6]])
-    x = np.dot(mat_out, b)
-    print (np.dot(mat_in, x))
-    print (x)
-    [[3.]
-     [6.]]
-    [[-6.]
-     [ 3.]]
     """
+    
+    # Incorrect test cases (-2)
+    
     if mat_in.shape != (2,2):
         print("Warning: Shape must be 2x2.")
         return None
@@ -63,26 +48,9 @@ def matrix_inverse(mat_in):
     
     for row in range(2):
         for column in range(2):
-            mat_out[row,column]=(1/dterm)*mat_flip[row,column]
+            mat_out[row,column]=(1/dterm)*mat_flip[row,column] # not the proper steps, supposed to utilize the loops to avoid lines 35-38 (-2)
     
     return mat_out
-    
-
-# Inverse matrix test
-matrix_inverse(np.array([[4, 9], [1, 4]]))
-# mat_in.dot(mat_out) test
-print(np.dot(np.array([[4, 9], [1, 4]]), matrix_inverse(np.array([[4, 9], [1, 4]]))))
-# mat_out.dot(mat_in) test
-print(np.dot(matrix_inverse(np.array([[4, 9], [1, 4]])), np.array([[4, 9], [1, 4]])))
-# Return x and b test
-mat_in = np.array([[4, 9], [1, 4]])
-mat_out = matrix_inverse(mat_in)
-b = np.array([[3], [6]])
-x = np.dot(mat_out, b)
-print (np.dot(mat_in, x))
-print (x)
-
-import numpy as np
 
 def logit_like_sum(y: list, x: list, beta0: float, beta1: float) -> float:
     """ Calculates the sum of the log-likelihood across all observations,
@@ -101,27 +69,19 @@ def logit_like_sum(y: list, x: list, beta0: float, beta1: float) -> float:
     >>> logit_like_sum([8, 8, 1], [9, 4, 1], 2.5, 2.1)    
     226.0899802301752
     """
+    
+    # failed to check if y len = x len (-1)
     y = np.array(y)
     x = np.array(x)
     
     logit = np.exp(beta0 + x * beta1) / (1 + np.exp(beta0 + x * beta1))
     
-    log_likelihood = y * np.log(logit) + (1 - y) * np.log(1 - logit)
+    log_likelihood = y * np.log(logit) + (1 - y) * np.log(1 - logit) # Clever, but what if y does not equal 0 or 1? (-1)
     
     total_log_likelihood = np.sum(log_likelihood)
 
     return total_log_likelihood  
-  
-# Testing the function
-logit_like_sum([4, 2, 5], [3, 1, 6], 0.2, 1.5)
-# 52.42305877214691
-logit_like_sum([3, 2, 8], [7, 7, 4], 0.1, 0.5)
-# 25.33056629080383
-logit_like_sum([8, 8, 1], [9, 4, 1], 2.5, 2.1)
-# 226.0899802301752
 
-import numpy as np
-import math
 
 def logit_like_grad(y: list, x: list, beta0: float, beta1: float) -> float:
     """Calculates the gradient vector of the likelihood function
@@ -150,6 +110,8 @@ def logit_like_grad(y: list, x: list, beta0: float, beta1: float) -> float:
     gradient_b0 = 0
     gradient_b1 = 0
     
+    # failed to check if y len = x len (-1)
+    
     for i in range(len(y)):
         log_function = 1 / (1 + np.exp(-(beta0 + beta1 * x[i])))
         
@@ -164,22 +126,6 @@ def logit_like_grad(y: list, x: list, beta0: float, beta1: float) -> float:
             return None
         
     return np.array([gradient_b0, gradient_b1])
-            
-# Testing the function
-logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], 0.0, 0.0)
-# [0.0, 0.0]
-logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(3), 0.0)
-# [-1.0, -10.0]
-logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(7), 0.0)
-# [-1.5, -15.0]
-logit_like_grad([1, 0, 1], [1, 1, 1], 0.0, math.log(2))
-# [0.0, 0.0]
-logit_like_grad([1, 0, 1], [1, 1, 1], 0.0, math.log(5))
-# [-0.5, -0.5]
-logit_like_grad([1, 0, 1], [3, 3, 3], 0.0, math.log(2))
-# [-2/3, -2.0]
-
-import numpy as np
 
 def CESutility_multi(x: list, a: list, r: float) -> float:
    """Calculates the consumer utility for more than two goods
@@ -203,6 +149,8 @@ def CESutility_multi(x: list, a: list, r: float) -> float:
        print("Error: Lengths must be equal")
        return None
    
+# What about r? (-1)
+   
    if len(x) == len(a):
        utility = sum(a[i]**(1-r) * x[i]**r for i in range(len(x))) ** (1/r)
        return utility
@@ -210,12 +158,4 @@ def CESutility_multi(x: list, a: list, r: float) -> float:
    else:
        return None
 
-# Testing the function
-CESutility_multi([3, 4, 5], [1, 5, 2], 1.5)
-# 6.528142797805768
-CESutility_multi([3, -4, 5], [1, 5, 2], 1.5)
-# Error: Values must be positive
-CESutility_multi([3, 4, 5, 6], [1, 5, 2], 1.5)
-# Error: Lengths must be equal
-
-   
+# No Doctest and no output file (-7)
